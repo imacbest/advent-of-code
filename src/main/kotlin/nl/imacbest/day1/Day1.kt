@@ -19,8 +19,11 @@ class Day1 {
     fun calculateHigherWithSlidingWindow(input: List<Int>, window: Int): Int {
         val windowsValues = mutableListOf<Int>()
         var i = 0
-        while (i + 3 <= input.size) {
-            val sum = input[i] + input[i + 1] + input[i + 2]
+        while (i + window <= input.size) {
+            var sum = 0
+            for (x in 0 until window) {
+                sum += input[i + x]
+            }
             windowsValues.add(sum)
             i++
         }
@@ -29,7 +32,7 @@ class Day1 {
 }
 
 
-fun main(args: Array<String>) {
+fun main() {
     val day1 = Day1()
     val inputPuzzle1 = readFileToIntList("day1/puzzle-1.txt")
     val puzzle1Result = day1.calculateHigherThanPreviousValue(inputPuzzle1)

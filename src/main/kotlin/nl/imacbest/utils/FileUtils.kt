@@ -11,3 +11,10 @@ fun readFileToIntList(filename: String): List<Int> {
     File("$FILE_PREFIX/$filename").forEachLine { resultList.add(parseInt(it)) }
     return Collections.unmodifiableList(resultList)
 }
+
+fun readFileToStringList(filename: String): List<String> {
+    val resultList = mutableListOf<String>()
+    File("$FILE_PREFIX/$filename")
+        .forEachLine { resultList.add(it) }
+    return Collections.unmodifiableList(resultList)
+}
