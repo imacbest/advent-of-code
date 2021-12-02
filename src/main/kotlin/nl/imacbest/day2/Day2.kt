@@ -54,18 +54,13 @@ class Day2 {
             .map { it.split(" ") }
             .map { it ->
                 Movement(
-                    valueOfString(
+                    Direction.forString(
                         it[0]
                     ),
                     parseInt(it[1])
                 )
             }
             .toList()
-
-    private fun valueOfString(value: String): Direction =
-        Direction.values()
-            .first() { it.name.lowercase() == value.lowercase() }
-
 
 }
 
@@ -74,7 +69,12 @@ data class Movement(val direction: Direction, val amount: Int)
 enum class Direction {
     UP,
     DOWN,
-    FORWARD
+    FORWARD;
+
+    companion object {
+        fun forString(value: String): Direction =
+            values().first() { it.name.lowercase() == value.lowercase() }
+    }
 }
 
 
